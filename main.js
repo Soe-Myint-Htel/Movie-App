@@ -2,7 +2,19 @@
 // document.querySelector("#menu-toggle").addEventListener("click", ()=>{
 //     document.querySelector("#nav-menu").classList.toggle("nav-active");
 // })
+window.addEventListener("scroll", ()=>{
+    if(window.scrollY > 500){
+        document.querySelector("header").style.backgroundColor = "rgb(236, 224, 224)";
+        document.querySelector(".scroll-top").style.bottom = "20px";
+    }else {
+        document.querySelector("header").style.backgroundColor = "rgb(238, 58, 58)";
+        document.querySelector(".scroll-top").style.bottom = "-100px";
+    }
+});
 
+document.querySelector(".scroll-top").addEventListener("click", ()=>{
+    window.scroll({top: 0, behavior: "smooth"});
+});
 // darkmode 
 const toggle = document.querySelector("#toggle-btn");
 const icon = document.querySelector("#toggle_icon");
