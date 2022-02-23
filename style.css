@@ -1,16 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,400;1,700@display=swap");
 
 :root{
-    --primary-color: rgb(55, 221, 221);
-    --secondary-color: rgba(55, 221, 221, 0.315);
-    --bg-color: #f4f4f4;
-    --text-color:#333;
+    --primary-color: rgb(238, 58, 58);
+    --secondary-color: rgba(238, 58, 58, 0.301);
+
+    --light-bg : rgb(236, 224, 224);
+    --dark-bg : rgb(0, 0, 0);
+    --light-text : rgb(0, 0, 0);
+    --dark-text : rgb(236, 224, 224);
 
     --heading-size:2.5rem;
     --sub-heading-size: 2rem;
     --text-size:1.4rem;
 
     --font-family:"Roboto Condensed", sans-serif;
+
 }
 
 *{
@@ -20,14 +24,19 @@
     box-sizing: border-box;
 }
 body{
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: var(--light-bg);
+    color: var(--light-text);
+}
+  
+.dark{
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
 }
 /* header start */
 p, a{
     font-size: var(--text-size);
     line-height: 1.2;
-    color: var(--text-color);
+    color: var(--light-text);
 }
 a {
     text-decoration: none;
@@ -46,10 +55,10 @@ header {
 }
 header a h2 {
     font-size: var(--sub-heading-size);
-    color: var(--text-color);
+    color: var(--light-text);
 }
 header a h2 span {
-    color: var(--bg-color);
+    color: var(--light-bg);
 }
 header ul {
     list-style: none;
@@ -58,7 +67,7 @@ header ul li {
     display: inline;
 }
 header ul li i {
-    color: var(--text-color);
+    color: var(--light-text);
     font-size: 1.5rem;
     margin: 0.5px;
 }
@@ -68,10 +77,13 @@ header nav ul li a {
     transition: .5s linear;
 }
 header nav ul li a:hover {
-    color: var(--bg-color);
+    color: var(--light-bg);
 }
 #menu-toggle{
     display: none;
+}
+#setting-toggle {
+    cursor: pointer;
 }
 
 
