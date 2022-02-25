@@ -62,3 +62,41 @@ function darkmodeOff() {
     localStorage.setItem("darkmode", null)
     icon.className = "bx bx-sun"
 }
+// fetch movie
+const url = {
+    apiKey : "api_key=4cbd0f46dda1e5e694f1db2ad6f0ff3f",
+    baseURL : "https://api.themoviedb.org/3/discover/movie?"
+}
+const popularURL = url.baseURL+"sort_by=popularity.desc&"+url.apiKey;
+const imgURL = "https://image.tmdb.org/t/p/w500/";
+
+function fetchMovie(path){
+    fetch(path)
+    .then(res => res.json())
+    .then(data => showMovie(data)) 
+}
+fetchMovie(popularURL);
+function showMovie(data){
+    let res = data.results;
+    res.forEach(movie =>{
+        const div = document.createElement("div");
+        div.className = "card";
+        div.innerHTML = `
+            <div class="img-box">
+                <img src="${imgURL+movie.poster_path}" alt="">
+            </div>
+            <div class="details">
+                <h3 class="movTitle">${movie.original_title}</h3>
+                <span>${movie.popularity.toFixed(1)}</span>
+            </div>
+            <div class="overview">
+                <h5>Overview</h5>
+                <p>${movie.overview}</p>
+                <p>
+                    Released at <strong>${movie.release_date}</strong>
+                </p>
+            </div> 
+        `;
+        document.querySelector(".movie-container").appendChild(div);
+    })
+}
