@@ -69,7 +69,7 @@ const url = {
 }
 const popularURL = url.baseURL+"sort_by=popularity.desc&"+url.apiKey;
 const imgURL = "https://image.tmdb.org/t/p/w500/";
-
+const searchURL = "https://api.themoviedb.org/3/search/movie?"+url.apiKey;
 function fetchMovie(path){
     fetch(path)
     .then(res => res.json())
@@ -78,6 +78,7 @@ function fetchMovie(path){
 fetchMovie(popularURL);
 function showMovie(data){
     let res = data.results;
+    document.querySelector(".movie-container").innerHTML = "";
     res.forEach(movie =>{
         const div = document.createElement("div");
         div.className = "card";
@@ -86,8 +87,8 @@ function showMovie(data){
                 <img src="${imgURL+movie.poster_path}" alt="">
             </div>
             <div class="details">
-                <h3 class="movTitle">${movie.original_title}</h3>
-                <span>${movie.popularity.toFixed(1)}</span>
+                <h3>${movie.original_title}</h3>
+                <span>${movie.vote_average.toFixed(1)}</span>
             </div>
             <div class="overview">
                 <h5>Overview</h5>
@@ -100,3 +101,14 @@ function showMovie(data){
         document.querySelector(".movie-container").appendChild(div);
     })
 }
+// search movie
+document.querySelector("#search").addEventListener("keypress",event =>{
+    if(event.keyCode === 13){
+        let val = event.target.value;
+        if(val){
+            fetchMovie(searchURL+"&query="+val)
+        }else {
+            fetchMovie(popularURL);
+        }
+    }
+})
